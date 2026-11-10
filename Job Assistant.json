@@ -1,0 +1,3501 @@
+{
+  "name": "Job Assistant Error Alert",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse Application').first().json.chatId }}",
+        "text": "={{ $('Parse Application').first().json.tgText }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Send email",
+                    "additionalFields": {
+                      "callback_data": "={{ 'send:' + $('Parse Application').first().json.id }}"
+                    }
+                  },
+                  {
+                    "text": "Mark applied",
+                    "additionalFields": {
+                      "callback_data": "={{ 'done:' + $('Parse Application').first().json.id }}"
+                    }
+                  },
+                  {
+                    "text": "Skip",
+                    "additionalFields": {
+                      "callback_data": "={{ 'skip:' + $('Parse Application').first().json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "426f22f5-e1a4-40ae-8493-23efe7e7bfd2",
+      "name": "Send Draft for Approval 2",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3120,
+        528
+      ],
+      "webhookId": "4e261b8b-b5a9-47cb-9a84-7420df3e5f41",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 245350092,
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=245350092"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.id }}",
+            "Subject": "={{ $json.subject }}",
+            "Body": "={{ $json.body }}",
+            "Status": "Pending approval"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "JobKey",
+              "displayName": "JobKey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Method",
+              "displayName": "Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ToEmail",
+              "displayName": "ToEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Body",
+              "displayName": "Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Verdict",
+              "displayName": "Verdict",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ScamRisk",
+              "displayName": "ScamRisk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SentAt",
+              "displayName": "SentAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FollowUpDate",
+              "displayName": "FollowUpDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "JobJson",
+              "displayName": "JobJson",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "JobText",
+              "displayName": "JobText",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "6c5afa1a-3919-4a1a-bd12-584505841e64",
+      "name": "Save Draft",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2880,
+        528
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ !$json.failed }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "f2e37040-8e70-441e-ae01-0da04ca2290e",
+      "name": "Draft OK 2?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2640,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Draft Context').first().json;\nconst raw = String($input.first().json.text || '').replace(/```json|```/g, '').trim();\nlet d = {};\ntry { d = JSON.parse(raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1)); } catch (e) { d = {}; }\nconst list = a => Array.isArray(a) ? a.filter(Boolean).map(String) : [];\nconst bullets = a => list(a).map(x => '- ' + x).join('\\n') || '- none';\nconst core = String(d.draft_text || '').trim();\nconst namePat = /[\\[<{(]\\s*(?:(?:your|applicant|candidate|full)\\s+)*name\\s*[\\]>})]|\\b(?:your|applicant|candidate|full)\\s+(?:full\\s+)?name\\b/gi;\nconst fillName = t => ctx.fullName ? String(t).replace(namePat, ctx.fullName) : String(t);\nconst subject = fillName(String(ctx.subjectRequired || d.email_subject || ('Application: ' + ctx.title)).trim());\nconst body = core ? fillName(core) + '\\n\\n' + ctx.signature : '';\nconst leftover = (body + ' ' + subject).match(/\\[[^\\]\\n]{2,40}\\]/g) || [];\nlet tg = 'Draft for ' + ctx.title + ' at ' + ctx.company + '\\n' +\n  'Send to: ' + (ctx.toEmail || 'no email address in the posting (apply yourself, then press Mark applied)') + '\\n\\n' +\n  'Needs from you:\\n' + bullets(d.missing_info) +\n  (leftover.length ? '\\n\\nWARNING: the draft still contains ' + leftover.join(' ') + '. Edit it in the sheet before sending.' : '') +\n  '\\n\\n--- DRAFT ---\\nSubject: ' + subject + '\\n\\n' + body.slice(0, 2200) + '\\n\\nID: ' + ctx.id;\nif (tg.length > 3900) tg = tg.slice(0, 3900) + '...';\nreturn [{ json: { failed: !core, id: ctx.id, chatId: ctx.chatId, subject, body, tgText: tg } }];"
+      },
+      "id": "670f93da-6f71-4a81-9ca3-b7cade96449d",
+      "name": "Parse Application",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2448,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-flash-latest",
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "id": "36bc4e94-4bfe-4158-8a54-63308d8cd02f",
+      "name": "Gemini Model: Draft 2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        752
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TaEsH2rOY7qb1nnW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a careful, honest job-application assistant. Return ONLY valid JSON, no markdown.\n\nCANDIDATE RESUME (the only source of facts about the candidate):\n{{ $json.resumeText }}\n\nCANDIDATE RULES AND PREFERENCES:\n{{ $json.rules }}\n\nCANDIDATE DETAILS YOU MAY USE WHEN THE POSTING ASKS FOR THEM:\nExpected salary: {{ $json.expectedSalary || 'not provided' }}\nNotice period or availability: {{ $json.noticePeriod || 'not provided' }}\n\nJOB (JSON):\n{{ $json.jobJson }}\n\nJOB TEXT EXCERPT:\n{{ $json.jobExcerpt }}\n\nThe candidate has already decided to apply. Write the application. Return JSON with exactly these keys:\nemail_subject (use the required subject exactly if the job gives one),\ndraft_text (if apply_method is email: the email body. Otherwise: the message or answers the candidate should paste. 180 words maximum),\nmissing_info (array: things the posting asks for that the resume and candidate details do not contain).\n\nRules for draft_text: use only facts from the resume; never invent skills, employers, dates or numbers; emphasise the experience that matches the job; follow every special instruction in the posting; if the posting asks for expected salary, notice period or availability, state the value from CANDIDATE DETAILS, and if it says 'not provided' do not invent it and list it in missing_info; copy the required email subject exactly and leave any placeholder such as Your Name as it is (the system fills it in); never write placeholders like [Your Name] in draft_text; write in the language of the job posting; plain text; do not include the candidate's phone, email, address or a signature (it is added later); start with a greeting and end with a short closing line.",
+        "needsFallback": true
+      },
+      "id": "08a8a8c5-6071-44d0-84ac-e6ee04701a5c",
+      "name": "Draft Application (Gemini)",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        2160,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const fa = $('Find Application').first().json;\nconst row = fa.row || {};\nconst prof = {};\n$('Read Profile 3').all().forEach(i => { if (i.json.Key) prof[i.json.Key] = i.json.Value; });\nlet job = {};\ntry { job = JSON.parse(row.JobJson || '{}'); } catch (e) { job = {}; }\nconst signature = prof.Signature ||\n  ['Best regards,', prof.FullName, prof.Phone, prof.Email].filter(Boolean).join('\\n');\nreturn [{ json: {\n  id: fa.id, chatId: fa.chatId, title: row.Title || job.title || '', company: row.Company || job.company || '',\n  toEmail: row.ToEmail || '', subjectRequired: job.subject_required || '',\n  jobJson: row.JobJson || '{}', jobExcerpt: String(row.JobText || '').slice(0, 5000),\n  resumeText: prof.ResumeText || '', rules: prof.Rules || '',\n  fullName: String(prof.FullName || '').trim(),\n  expectedSalary: String(prof.ExpectedSalary || '').trim(), noticePeriod: String(prof.NoticePeriod || '').trim(),\n  signature\n}}];"
+      },
+      "id": "873bd698-da56-45db-8cfb-7e139d8ce771",
+      "name": "Build Draft Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1920,
+        544
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1646435542,
+          "mode": "list",
+          "cachedResultName": "Profile",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=1646435542"
+        },
+        "options": {}
+      },
+      "id": "1e33d31f-8048-4f73-84ce-393b110a832c",
+      "name": "Read Profile 3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1696,
+        544
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse Draft').first().json.chatId }}",
+        "text": "={{ $('Parse Draft').first().json.tgText }}",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "Yes, draft it",
+                    "additionalFields": {
+                      "callback_data": "={{ 'draft:' + $('Parse Draft').first().json.id }}"
+                    }
+                  },
+                  {
+                    "text": "Skip",
+                    "additionalFields": {
+                      "callback_data": "={{ 'skip:' + $('Parse Draft').first().json.id }}"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "9ec31bea-c73e-40f7-b27e-fd745859d56a",
+      "name": "Ask to Apply",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        4352,
+        -16
+      ],
+      "webhookId": "c897f6dc-fb7d-4bcf-b42a-b206fd755fde",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "34f74eff-8817-4dfa-bcb5-8b250e613b86",
+      "name": "Ollama Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        3552,
+        208
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "OY5eSCTH2lJtenKP",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "29e37e60-f8f5-467b-8726-6747e0a21547",
+      "name": "Ollama Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        1952,
+        112
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "OY5eSCTH2lJtenKP",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 245350092,
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=245350092"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Find Application').first().json.id }}",
+            "Status": "Skipped"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "JobKey",
+              "displayName": "JobKey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Method",
+              "displayName": "Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ToEmail",
+              "displayName": "ToEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Body",
+              "displayName": "Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Verdict",
+              "displayName": "Verdict",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ScamRisk",
+              "displayName": "ScamRisk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SentAt",
+              "displayName": "SentAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FollowUpDate",
+              "displayName": "FollowUpDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "0a5754e7-0bd9-4bbf-8386-bfaf6d4da398",
+      "name": "Mark Skipped",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1696,
+        1456
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 245350092,
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=245350092"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Find Application').first().json.id }}",
+            "Status": "Applied (manual)",
+            "SentAt": "={{ $now.toFormat('yyyy-MM-dd HH:mm') }}",
+            "FollowUpDate": "={{ $now.plus({ days: 7 }).toFormat('yyyy-MM-dd') }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "JobKey",
+              "displayName": "JobKey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Method",
+              "displayName": "Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ToEmail",
+              "displayName": "ToEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Body",
+              "displayName": "Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Verdict",
+              "displayName": "Verdict",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ScamRisk",
+              "displayName": "ScamRisk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SentAt",
+              "displayName": "SentAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FollowUpDate",
+              "displayName": "FollowUpDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "b5ce91d4-436b-4cb9-99f0-96a7a143a2b9",
+      "name": "Mark Applied",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1696,
+        1248
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 245350092,
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=245350092"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $('Find Application').first().json.id }}",
+            "Status": "Sent",
+            "SentAt": "={{ $now.toFormat('yyyy-MM-dd HH:mm') }}",
+            "FollowUpDate": "={{ $now.plus({ days: 7 }).toFormat('yyyy-MM-dd') }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "JobKey",
+              "displayName": "JobKey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Method",
+              "displayName": "Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ToEmail",
+              "displayName": "ToEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Body",
+              "displayName": "Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Verdict",
+              "displayName": "Verdict",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "ScamRisk",
+              "displayName": "ScamRisk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SentAt",
+              "displayName": "SentAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "FollowUpDate",
+              "displayName": "FollowUpDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "15b0dc50-9a2a-40cf-b417-ba0a8b48ace7",
+      "name": "Mark Sent",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2800,
+        896
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.6-flash",
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "id": "aa0302a1-227b-4302-93ce-027a6b83fceb",
+      "name": "Gemini Model: Extract1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1376,
+        144
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TaEsH2rOY7qb1nnW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Find Application').first().json.chatId }}",
+        "text": "Skipped.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "fb948aca-33a8-4f51-a345-a71533144140",
+      "name": "Tell Skipped",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1920,
+        1456
+      ],
+      "webhookId": "37873f8a-b439-4759-a4f9-c150daccbd9d",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Find Application').first().json.chatId }}",
+        "text": "Logged as applied. Follow-up date set for 7 days from now.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "91ba5bcc-5eab-4fb1-bfef-055ee662e2b3",
+      "name": "Tell Applied",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1920,
+        1248
+      ],
+      "webhookId": "32aff96c-948b-4777-a894-1a900beb41c5",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Find Application').first().json.chatId }}",
+        "text": "={{ 'Sent to ' + $('Find Application').first().json.row.ToEmail + '. Follow-up date: ' + $now.plus({ days: 7 }).toFormat('yyyy-MM-dd') }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "05c68e2c-effc-4e6b-947e-f3a093201010",
+      "name": "Tell Sent",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3024,
+        896
+      ],
+      "webhookId": "e9c33c82-9cf5-422d-84d1-06c087c84347",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Find Application').first().json.row.ToEmail }}",
+        "subject": "={{ $('Find Application').first().json.row.Subject }}",
+        "emailType": "text",
+        "message": "={{ $('Find Application').first().json.row.Body }}",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "id": "87ad7417-daeb-4324-b5c7-bf9d853cc74a",
+      "name": "Send Email",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2576,
+        896
+      ],
+      "webhookId": "a23d8859-ecd5-4d4d-b8c9-ca25b025cf13",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "VAwTxx2VTSd0sI2g",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.fileId }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "id": "39de7677-73e0-49a4-b9fe-8640787a4ff5",
+      "name": "Download Resume",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        2368,
+        896
+      ],
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "HCDbdufjkPVFS2D4",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const prof = {};\n$('Read Profile 2').all().forEach(i => { if (i.json.Key) prof[i.json.Key] = i.json.Value; });\nreturn [{ json: { fileId: String(prof.ResumeFileId || '').trim() } }];"
+      },
+      "id": "d9bf5d97-1a58-4724-9e21-abfc3b955374",
+      "name": "Get Resume File ID",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        896
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1646435542,
+          "mode": "list",
+          "cachedResultName": "Profile",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=1646435542"
+        },
+        "options": {}
+      },
+      "id": "e44d929f-003c-46c6-bb95-656ebe56ec5f",
+      "name": "Read Profile 2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1920,
+        896
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      },
+      "notes": "Profile"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Find Application').first().json.chatId }}",
+        "text": "Cannot send: this job has no email address, or it was already sent. Use Mark applied if you applied yourself.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "a613453d-20c9-4d16-8d7d-d6f779b181cc",
+      "name": "Tell Cannot Send",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1920,
+        1040
+      ],
+      "webhookId": "5dfc5fc7-8219-4006-af8c-c1b76f985536",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.row.ToEmail }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              },
+              "rightValue": ""
+            },
+            {
+              "id": "c2",
+              "leftValue": "={{ $json.row.Status }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              },
+              "rightValue": "Sent"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "32ae6a2b-72e7-4b8d-9c7c-b903b49b66b6",
+      "name": "Can Send Email?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1696,
+        912
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "8f284795-773b-4fa8-9e7a-188da7227e82",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "draft",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "draft"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "s-send",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "send",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "send"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "s-done",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "done",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "done"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "s-skip",
+                    "leftValue": "={{ $json.action }}",
+                    "rightValue": "skip",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "skip"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "c3f58bf3-7832-42bb-9847-57b7be5dd095",
+      "name": "Which Button",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        1376,
+        560
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "I could not find that application in the tracker.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "dd6ea15e-69c9-4a01-8476-630715a14ba6",
+      "name": "Tell Not Found",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        864
+      ],
+      "webhookId": "3b0c44a0-c287-41ca-9181-7d249c715d83",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.found }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a101721a-487a-4f43-bd7f-da95940c7bd4",
+      "name": "Found?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1168,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const p = $('Parse Button').first().json;\nconst rows = $('Read Applications 2').all().map(i => i.json);\nconst row = rows.find(r => String(r.ID) === p.id);\nreturn [{ json: Object.assign({}, p, { found: !!row, row: row || {} }) }];"
+      },
+      "id": "d2ca4c83-5d43-47a6-81d2-7df20cd0928d",
+      "name": "Find Application",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        944,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 245350092,
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=245350092"
+        },
+        "options": {}
+      },
+      "id": "127a255d-54ee-4f49-902b-061c500d1e1e",
+      "name": "Read Applications 2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        720,
+        592
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      },
+      "notes": "Applications"
+    },
+    {
+      "parameters": {
+        "resource": "callback",
+        "queryId": "={{ $json.callbackId }}",
+        "additionalFields": {}
+      },
+      "id": "61abf2c8-52ab-46d4-98f1-0b741c1eaaae",
+      "name": "Answer Button",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        496,
+        592
+      ],
+      "webhookId": "6aaaca22-e768-4f8c-a94d-efc493da491d",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $('Normalize Input').first().json;\nconst parts = String(d.callbackData).split(':');\nreturn [{ json: { action: parts[0], id: parts[1] || '', chatId: d.chatId, callbackId: d.callbackId, messageId: d.messageId } }];"
+      },
+      "id": "f85e7ada-8b77-46c1-a8d4-051d97240854",
+      "name": "Parse Button",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        592
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "The AI draft could not be read. Please send the job again.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "3bce71a0-76aa-401f-983c-1b517138f605",
+      "name": "Tell Draft Failed",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        4224,
+        176
+      ],
+      "webhookId": "a94020a8-7821-471a-9bc9-e6c70520eef2",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ !$json.failed }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "9d6055a9-4cc1-4405-8790-708fb19dab99",
+      "name": "Draft OK?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3888,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const ctx = $('Build Context').first().json;\nconst raw = String($input.first().json.text || '').replace(/```json|```/g, '').trim();\nlet d = {};\ntry { d = JSON.parse(raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1)); } catch (e) { d = {}; }\nconst list = a => Array.isArray(a) ? a.filter(Boolean).map(String) : [];\nconst bullets = a => list(a).map(x => '- ' + x).join('\\n') || '- none';\nconst failed = d.score === undefined;\nconst score = Number(d.score || 0);\nconst low = score < ctx.minScore ? ' (below your minimum of ' + ctx.minScore + ')' : '';\nconst to = ctx.apply_method === 'email' ? (ctx.apply_email || '') : '';\nlet tg = 'Job: ' + ctx.title + ' at ' + ctx.company + '\\n' +\n  'Location: ' + (ctx.location || 'n/a') + ' | ' + (ctx.work_type || '') + '\\n' +\n  'Fit: ' + score + '/100, ' + (d.verdict || '?') + ', \\n' + 'Role match: ' + (d.role_match || '?') + low + '\\n' +\n  'Scam risk: ' + (d.scam_risk || '?') + '\\n' +\n  'Apply by: ' + ctx.apply_method + (to ? ' to ' + to : '') + (ctx.deadline ? ' | deadline ' + ctx.deadline : '') + '\\n\\n' +\n  'Why:\\n' + bullets(d.reasons) + '\\n\\nGaps:\\n' + bullets(d.gaps) + '\\n\\nFlags:\\n' + bullets(d.scam_flags) +\n  '\\n\\nSummary: ' + (ctx.summary || '') +\n  '\\n\\nDo you want to apply for this job? Yes writes the application draft. Nothing is sent yet.\\n\\nID: ' + ctx.id;\nif (tg.length > 3900) tg = tg.slice(0, 3900) + '...';\nreturn [{ json: {\n  failed, chatId: ctx.chatId, id: ctx.id, key: ctx.key, tgText: tg,\n  date: new Date().toISOString().slice(0, 10),\n  title: ctx.title, company: ctx.company, location: ctx.location || '',\n  link: ctx.url || ctx.apply_url || '', method: ctx.apply_method, toEmail: to,\n  score, verdict: d.verdict || '', scamRisk: d.scam_risk || '',\n  jobJson: ctx.jobJson, jobText: ctx.jobExcerpt\n}}];"
+      },
+      "id": "16a05b2e-ec73-46ec-858c-6d2974568423",
+      "name": "Parse Draft",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3680,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.6-flash",
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "id": "cc3de4ba-c914-4d27-92c9-f53b4b9521cd",
+      "name": "Gemini Model: Draft",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        3408,
+        208
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TaEsH2rOY7qb1nnW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a careful, honest job-fit assistant. Return ONLY valid JSON, no markdown.\n \nCANDIDATE RESUME (the only source of facts about the candidate):\n{{ $json.resumeText }}\n \nCANDIDATE RULES AND PREFERENCES:\n{{ $json.rules }}\n \nJOB (JSON):\n{{ $json.jobJson }}\n \nJOB TEXT EXCERPT:\n{{ $json.jobExcerpt }}\n \nDecide whether this job is a real fit for this candidate. Compare the role type, seniority and required skills with the resume, and apply the candidate rules. A job in a different field from the candidate's target roles (for example testing, sales or support for a software engineer) is a poor fit: score it below 40 with verdict skip and role_match no. A junior role for a senior candidate, or a role that asks for much less experience than the candidate has, scores low unless the rules say otherwise. Do not write any application text.\n \nReturn JSON with exactly these keys:\nscore (integer 0-100),\nverdict (apply|maybe|skip),\nrole_match (yes|partial|no),\nreasons (array of up to 4 short strings),\ngaps (array of up to 4 short strings),\nscam_risk (low|medium|high),\nscam_flags (array of short strings; flag requests for money, ID or bank details, free email for a large company, unrealistic pay, vague company).",
+        "needsFallback": true
+      },
+      "id": "86266bc3-408f-4c29-9cdd-c4695d5d92e9",
+      "name": "Score and Draft (Gemini)",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        3408,
+        0
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "={{ 'Already in your tracker: ' + $json.title + ' at ' + $json.company + ' (status: ' + $json.existingStatus + '). Skipping.' }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "8e0aae5e-2afd-4139-a0b3-e4fbf76c7d06",
+      "name": "Tell Duplicate",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3408,
+        -176
+      ],
+      "webhookId": "554c7674-268c-4958-abef-2afd18457337",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.duplicate }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "51ce87ec-57f3-4390-aaba-95b4ed31d376",
+      "name": "Already Seen?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3184,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const job = $('Parse Job').first().json;\nconst apps = $('Read Applications').all().map(i => i.json).filter(r => r.ID);\nconst prof = {};\n$('Read Profile').all().forEach(i => { if (i.json.Key) prof[i.json.Key] = i.json.Value; });\nconst norm = s => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();\nconst key = norm(job.company) + '|' + norm(job.title);\nconst dup = apps.find(r => r.JobKey === key || (job.url && r.Link === job.url));\nconst signature = prof.Signature ||\n  ['Best regards,', prof.FullName, prof.Phone, prof.Email].filter(Boolean).join('\\n');\nconst slim = Object.assign({}, job); delete slim.jobText; delete slim.chatId;\nreturn [{ json: Object.assign({}, job, {\n  key, id: Math.random().toString(36).slice(2, 10),\n  duplicate: !!dup, existingStatus: dup ? dup.Status : '',\n  resumeText: prof.ResumeText || '', rules: prof.Rules || '',\n  minScore: Number(prof.MinScore || 60), signature,\n  fullName: String(prof.FullName || '').trim(),\n  expectedSalary: String(prof.ExpectedSalary || '').trim(),\n  noticePeriod: String(prof.NoticePeriod || '').trim(),\n  jobJson: JSON.stringify(slim), jobExcerpt: String(job.jobText || '').slice(0, 5000)\n})}];"
+      },
+      "id": "6da029d8-09a7-46cf-a07b-9a7ecb26b0f1",
+      "name": "Build Context",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2960,
+        -80
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1646435542,
+          "mode": "list",
+          "cachedResultName": "Profile",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=1646435542"
+        },
+        "options": {}
+      },
+      "id": "794d6946-92e9-4f77-b332-8acd8fd0739c",
+      "name": "Read Profile",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2736,
+        -80
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      },
+      "notes": "Profile"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 245350092,
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=245350092"
+        },
+        "options": {}
+      },
+      "id": "0f090de2-3bb1-4b54-9ea1-dd98749bffee",
+      "name": "Read Applications",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2528,
+        -80
+      ],
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      },
+      "notes": "Applications"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Parse Job').first().json.chatId }}",
+        "text": "The AI output could not be read. Please send the link or text again.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "7b03794a-6674-4408-80a7-a5344e799106",
+      "name": "Tell Parse Failed",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2528,
+        96
+      ],
+      "webhookId": "ae9eeb44-cdb4-4c92-a47d-f9d032bffb71",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ !$json.parse_error }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "feeb6a04-ae5d-4254-b489-99d3e476dbcf",
+      "name": "Parsed OK?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2288,
+        -64
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = String($input.first().json.text || '').replace(/```json|```/g, '').trim();\nlet job = {};\ntry { job = JSON.parse(raw.slice(raw.indexOf('{'), raw.lastIndexOf('}') + 1)); }\ncatch (e) { job = { parse_error: true }; }\nconst c = $('Clean Text').first().json;\njob.chatId = c.chatId; job.url = c.url; job.jobText = c.jobText;\nreturn [{ json: job }];"
+      },
+      "id": "1dd40851-837b-4214-a6b4-128afcf06db0",
+      "name": "Parse Job",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2112,
+        -64
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.6-flash",
+        "options": {
+          "temperature": 0.2
+        }
+      },
+      "id": "d844951d-3830-47f9-bf12-961b660046cb",
+      "name": "Gemini Model: Extract",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        1824,
+        112
+      ],
+      "credentials": {
+        "googlePalmApi": {
+          "id": "TaEsH2rOY7qb1nnW",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You extract structured data from a job posting. Return ONLY valid JSON, no markdown, with exactly these keys:\ntitle, company, location, work_type (onsite|remote|hybrid|unknown), salary (string or empty), deadline (string or empty), apply_method (email|web_form|message|unknown), apply_email (string or empty), apply_url (string or empty), subject_required (the exact email subject the posting demands, or empty), attachments_required (array of strings), special_instructions (string), requirements (array of up to 8 short strings), summary (max 40 words).\nUse only facts in the text. If something is not stated use an empty string or empty array. Do not guess email addresses.\n\nJOB TEXT:\n{{ $('Clean Text').first().json.jobText }}",
+        "needsFallback": true
+      },
+      "id": "625d6e08-6cbd-457b-8df1-07a410962d2f",
+      "name": "Extract Job (Gemini)",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1824,
+        -64
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Clean Text').first().json.chatId }}",
+        "text": "That does not look like a job posting. Send a job link or paste the full job description.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "bc249d5b-1943-4e2f-884c-c43e248eee2c",
+      "name": "Tell Not Job",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1840,
+        256
+      ],
+      "webhookId": "e7be07b8-f0bd-4806-88f4-e594db01854d",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.text }}",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              },
+              "rightValue": "YES"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a5765d30-9585-492c-8e20-00712c53d86b",
+      "name": "Is Job?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1648,
+        -48
+      ]
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "45f21e36-0fe8-4c8f-930c-0002b6655fb0",
+      "name": "Ollama Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        1504,
+        144
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "OY5eSCTH2lJtenKP",
+          "name": "Ollama account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ 'Reply with only YES or NO. Is the following text a job posting or job description?\\n\\n' + $('Clean Text').first().json.jobText.slice(0, 3000) }}",
+        "needsFallback": true
+      },
+      "id": "20216902-7e88-4842-b80b-fadf021c18c2",
+      "name": "Job Posting Check (Ollama)",
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1376,
+        -48
+      ],
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Clean Text').first().json.chatId }}",
+        "text": "I could not read enough text from that. Many job sites need a login or load with JavaScript. Please paste the job text here instead.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "69af4b0a-cf83-432f-a7ce-4f4d0021b79e",
+      "name": "Tell Unreadable",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1376,
+        288
+      ],
+      "webhookId": "482bdfe4-86dd-4b79-a682-7127c8798361",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ !$json.short }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "51e50825-c04a-46ad-961c-dbd5bfc9cfc5",
+      "name": "Enough Text?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1168,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const base = $('Get URL or Text').first().json;\nconst j = $input.first().json;\nlet t = '';\nif (base.hasUrl && typeof j.data === 'string') {\n  t = j.data\n    .replace(/<script[\\s\\S]*?<\\/script>/gi, ' ')\n    .replace(/<style[\\s\\S]*?<\\/style>/gi, ' ')\n    .replace(/<[^>]+>/g, ' ')\n    .replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')\n    .replace(/\\s+/g, ' ').trim();\n}\nconst pasted = base.hasUrl ? base.text.replace(base.url, '').trim() : base.text;\nif (t.length < 300) t = (pasted + ' ' + t).trim();\nreturn [{ json: { chatId: base.chatId, url: base.url, jobText: t.slice(0, 12000), short: t.length < 200 } }];"
+      },
+      "id": "e34abc5f-0137-4e4f-8746-35d0d1b18acf",
+      "name": "Clean Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        944,
+        -32
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.url }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (JobAssistant personal use)"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "text"
+            }
+          },
+          "timeout": 20000
+        }
+      },
+      "id": "63bb49f7-7810-479c-9053-94d16d4a69c8",
+      "name": "Fetch Page",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        720,
+        -144
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.hasUrl }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "0c6e8b35-f917-4e1f-bfec-60e7070f0b00",
+      "name": "Has Link?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        496,
+        -48
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const d = $('Normalize Input').first().json;\nconst m = d.text.match(/https?:\\/\\/[^\\s<>\"')]+/i);\nreturn [{ json: { chatId: d.chatId, text: d.text, url: m ? m[0] : '', hasUrl: !!m } }];"
+      },
+      "id": "dc967063-9a9b-4cd4-a00c-1be814b4554b",
+      "name": "Get URL or Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        288,
+        -48
+      ]
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "Send me a job link or paste the job text.\nI will read it, score it against your profile, and draft the application.\nNothing is sent until you press a button.\n\nButtons: Send email, Mark applied (you applied yourself), Skip.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "3ae3599f-7380-414a-99cf-f33508d87a40",
+      "name": "Send Help",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        288,
+        1056
+      ],
+      "webhookId": "7e0b3e67-792f-4954-b0c9-c5d2775f19ad",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "s-job",
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "job",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "job"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "s-callback",
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "callback",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "callback"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "s-help",
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "help",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "help"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "bf02d1a5-92d5-4c05-9f08-fe6fae875682",
+      "name": "Route",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        48,
+        224
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "c1",
+              "leftValue": "={{ $json.allowed }}",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              },
+              "rightValue": ""
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "418d4d98-f02e-424d-ad7b-45258aa51a25",
+      "name": "Allowed User?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -192,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// EDIT THIS LINE: put your own Telegram user ID (from @userinfobot) between the quotes.\nconst ALLOWED = ['YOUR_TELEGRAM_USER_ID'];\nconst u = $input.first().json;\nconst cb = u.callback_query;\nconst msg = u.message || {};\nconst from = cb ? cb.from : msg.from;\nconst chatId = cb ? cb.message.chat.id : (msg.chat && msg.chat.id);\nconst text = (msg.text || msg.caption || '').trim();\nlet kind = 'job';\nif (cb) kind = 'callback';\nelse if (/^\\/(start|help)/i.test(text)) kind = 'help';\nelse if (!text) kind = 'empty';\nreturn [{ json: {\n  allowed: !!from && ALLOWED.includes(String(from.id)),\n  kind, chatId, userId: from ? from.id : null, text,\n  callbackData: cb ? cb.data : '', callbackId: cb ? cb.id : '',\n  messageId: cb ? cb.message.message_id : msg.message_id\n}}];"
+      },
+      "id": "971094f2-8616-48ab-a038-cbc19739c49d",
+      "name": "Normalize Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "id": "fd24e6cd-f316-474a-b485-ba79272c9837",
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -624,
+        256
+      ],
+      "webhookId": "job-assistant-telegram",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "appendOrUpdate",
+        "documentId": {
+          "__rl": true,
+          "value": "1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk",
+          "mode": "list",
+          "cachedResultName": "Job Tracker",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 245350092,
+          "mode": "list",
+          "cachedResultName": "Applications",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1O9TXb7RgSiqETq76dcVljBifvTF-jpXfsojyztGWeGk/edit#gid=245350092"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "ID": "={{ $json.id }}",
+            "JobKey": "={{ $json.key }}",
+            "Date": "={{ $json.date }}",
+            "Title": "={{ $json.title }}",
+            "Company": "={{ $json.company }}",
+            "Location": "={{ $json.location }}",
+            "Link": "={{ $json.link }}",
+            "Method": "={{ $json.method }}",
+            "ToEmail": "={{ $json.toEmail }}",
+            "Score": "={{ $json.score }}",
+            "Verdict": "={{ $json.verdict }}",
+            "ScamRisk": "={{ $json.scamRisk }}",
+            "Status": "Awaiting decision",
+            "JobJson": "={{ $json.jobJson }}",
+            "JobText": "={{ $json.jobText }}"
+          },
+          "matchingColumns": [
+            "ID"
+          ],
+          "schema": [
+            {
+              "id": "ID",
+              "displayName": "ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "JobKey",
+              "displayName": "JobKey",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Date",
+              "displayName": "Date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Company",
+              "displayName": "Company",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Link",
+              "displayName": "Link",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Method",
+              "displayName": "Method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ToEmail",
+              "displayName": "ToEmail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Subject",
+              "displayName": "Subject",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Body",
+              "displayName": "Body",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Score",
+              "displayName": "Score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Verdict",
+              "displayName": "Verdict",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "ScamRisk",
+              "displayName": "ScamRisk",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "SentAt",
+              "displayName": "SentAt",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "FollowUpDate",
+              "displayName": "FollowUpDate",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Notes",
+              "displayName": "Notes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "JobJson",
+              "displayName": "JobJson",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "JobText",
+              "displayName": "JobText",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "998f7d82-2a17-48e6-ba66-2412257b5dfa",
+      "name": "Save Pending",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4144,
+        -16
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "krFKgH6MEA2U7MA2",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $json.chatId }}",
+        "text": "The AI draft could not be read. Press Yes, draft it again, or try later.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "id": "8803ec0e-980d-49fd-8747-ec31f44b4da7",
+      "name": "Tell Draft Failed 2",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2880,
+        704
+      ],
+      "webhookId": "cf0b5212-07b4-4e9d-a556-14fea0ad5188",
+      "credentials": {
+        "telegramApi": {
+          "id": "oJRc41fBPu5aY4t9",
+          "name": "Job Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "llama3.2:latest",
+        "options": {
+          "temperature": 0
+        }
+      },
+      "id": "394a90b3-f808-4ed3-b029-d81eb9b6f324",
+      "name": "Ollama Model3",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOllama",
+      "typeVersion": 1,
+      "position": [
+        2304,
+        752
+      ],
+      "credentials": {
+        "ollamaApi": {
+          "id": "OY5eSCTH2lJtenKP",
+          "name": "Ollama account"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Save Draft": {
+      "main": [
+        [
+          {
+            "node": "Send Draft for Approval 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft OK 2?": {
+      "main": [
+        [
+          {
+            "node": "Save Draft",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tell Draft Failed 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Application": {
+      "main": [
+        [
+          {
+            "node": "Draft OK 2?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft Application (Gemini)": {
+      "main": [
+        [
+          {
+            "node": "Parse Application",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Model: Draft 2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Draft Application (Gemini)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Draft Context": {
+      "main": [
+        [
+          {
+            "node": "Draft Application (Gemini)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Profile 3": {
+      "main": [
+        [
+          {
+            "node": "Build Draft Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Skipped": {
+      "main": [
+        [
+          {
+            "node": "Tell Skipped",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Applied": {
+      "main": [
+        [
+          {
+            "node": "Tell Applied",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark Sent": {
+      "main": [
+        [
+          {
+            "node": "Tell Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        [
+          {
+            "node": "Mark Sent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Resume": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Resume File ID": {
+      "main": [
+        [
+          {
+            "node": "Download Resume",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Profile 2": {
+      "main": [
+        [
+          {
+            "node": "Get Resume File ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Can Send Email?": {
+      "main": [
+        [
+          {
+            "node": "Read Profile 2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tell Cannot Send",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Which Button": {
+      "main": [
+        [
+          {
+            "node": "Read Profile 3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Can Send Email?",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Applied",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Mark Skipped",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Found?": {
+      "main": [
+        [
+          {
+            "node": "Which Button",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tell Not Found",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Application": {
+      "main": [
+        [
+          {
+            "node": "Found?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Applications 2": {
+      "main": [
+        [
+          {
+            "node": "Find Application",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Answer Button": {
+      "main": [
+        [
+          {
+            "node": "Read Applications 2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Button": {
+      "main": [
+        [
+          {
+            "node": "Answer Button",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Draft OK?": {
+      "main": [
+        [
+          {
+            "node": "Save Pending",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tell Draft Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Draft": {
+      "main": [
+        [
+          {
+            "node": "Draft OK?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Score and Draft (Gemini)",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Score and Draft (Gemini)": {
+      "main": [
+        [
+          {
+            "node": "Parse Draft",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Model: Draft": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Score and Draft (Gemini)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Already Seen?": {
+      "main": [
+        [
+          {
+            "node": "Tell Duplicate",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Score and Draft (Gemini)",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Context": {
+      "main": [
+        [
+          {
+            "node": "Already Seen?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Profile": {
+      "main": [
+        [
+          {
+            "node": "Build Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Applications": {
+      "main": [
+        [
+          {
+            "node": "Read Profile",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parsed OK?": {
+      "main": [
+        [
+          {
+            "node": "Read Applications",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tell Parse Failed",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Job": {
+      "main": [
+        [
+          {
+            "node": "Parsed OK?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extract Job (Gemini)",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Extract Job (Gemini)": {
+      "main": [
+        [
+          {
+            "node": "Parse Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Model: Extract": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Extract Job (Gemini)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Job?": {
+      "main": [
+        [
+          {
+            "node": "Extract Job (Gemini)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tell Not Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini Model: Extract1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Job Posting Check (Ollama)",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Job Posting Check (Ollama)": {
+      "main": [
+        [
+          {
+            "node": "Is Job?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Job Posting Check (Ollama)",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Enough Text?": {
+      "main": [
+        [
+          {
+            "node": "Job Posting Check (Ollama)",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Tell Unreadable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Clean Text": {
+      "main": [
+        [
+          {
+            "node": "Enough Text?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Page": {
+      "main": [
+        [
+          {
+            "node": "Clean Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Has Link?": {
+      "main": [
+        [
+          {
+            "node": "Fetch Page",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Clean Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get URL or Text": {
+      "main": [
+        [
+          {
+            "node": "Has Link?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route": {
+      "main": [
+        [
+          {
+            "node": "Get URL or Text",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Parse Button",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send Help",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Allowed User?": {
+      "main": [
+        [
+          {
+            "node": "Route",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalize Input": {
+      "main": [
+        [
+          {
+            "node": "Allowed User?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Normalize Input",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save Pending": {
+      "main": [
+        [
+          {
+            "node": "Ask to Apply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ollama Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Draft Application (Gemini)",
+            "type": "ai_languageModel",
+            "index": 1
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "b2000f24-9877-4352-b6b3-74958b513369",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "49f82de3d355407cbaabc83ce995639eebe73ed627473a9b0ba1f4be985f5d50"
+  },
+  "nodeGroups": [],
+  "id": "ERvAM46aksiEQavG",
+  "tags": []
+}
